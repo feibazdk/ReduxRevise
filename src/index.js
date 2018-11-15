@@ -1,12 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDom from 'react-dom'
+import App from './App'
+// 导入 createStore 属性
+import { createStore } from 'redux'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// 导入 reducer，一定要记住， reducer 一定是纯函数
+import { counter } from './redux/index'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// 通过 reducer ，使用 createStore 新建 store
+const store = createStore(counter)
+
+function render() {
+  ReactDom.render(<App store={ store } />, document.getElementById("root"))
+}
+
+render()
+
+store.subscribe(render)
