@@ -1,3 +1,4 @@
+
 const ADD_GUN = '机关枪'
 const REMOVE_GUN = '大炮'
 
@@ -19,4 +20,12 @@ export function addGunFun() {
 
 export function RemoveGunFun() {
   return { type: REMOVE_GUN }
+}
+
+export function DelayGunAsync() {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(addGunFun())
+    }, 2000)
+  }
 }
